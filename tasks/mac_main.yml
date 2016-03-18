@@ -1,0 +1,14 @@
+---
+  - name: Ensure fonts directory exists
+    file: path="{{ansible_user_dir}}/Library/fonts" state=directory
+
+  - name: Install Fonts
+    copy: src="files/{{item}}" dest="{{ansible_user_dir}}/Library/fonts/{{item}}" force=true
+    with_items: "{{fonts}}"
+    
+  - name: Ensure bash_profile config
+    lineinfile: dest="{{ansible_user_dir}}/.bash_profile" regexp="^export CLICOLORS=" line="export CLICOLORS=1"
+
+  - name: Ensure bash_profile config
+    lineinfile: dest="{{ansible_user_dir}}/.bash_profile" regexp="^export LSCOLORS=" line="export LSCOLORS=ExFxCxDxBxegedabagacad"
+    

@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Richard Kent Jordan
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+    - name: OSX
+    - name: Ubuntu
+dependencies: []

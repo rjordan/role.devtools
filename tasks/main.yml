@@ -1,0 +1,49 @@
+---
+  - name: Notify user
+    debug: msg="Setting development settings for {{ansible_user_id}}"
+  
+  - name: Create/Update gemrc
+    template: src=templates/gemrc dest="{{ansible_user_dir}}/.gemrc"
+    become: true
+    become_user: "{{user.user_id}}"
+
+  - name: Create/Update rvmrc
+    template: src=templates/rvmrc dest="{{ansible_user_dir}}/.rvmrc"
+    become: true
+    become_user: "{{user.user_id}}"
+
+  - name: Create/Update gitconfig
+    template: src=templates/gitconfig dest="{{ansible_user_dir}}/.gitconfig"
+    become: true
+    become_user: "{{user.user_id}}"
+        
+  - name: Check for bash_profile
+    stat: path="{{ansible_user_dir}}/.bash_profile"
+    register: bp_stat
+
+  - name: Create bash_profile if missing
+    file: path="{{ansible_user_dir}}/.bash_profile" state=touch
+    when: bp_stat.stat.exists == False
+
+  - name: Ensure bash_profile config
+    lineinfile: dest="{{ansible_user_dir}}/.bash_profile" regexp="^export CLICOLORS=" line="export CLICOLORS=1"
+
+  - name: Ensure bash_profile config
+    lineinfile: dest="{{ansible_user_dir}}/.bash_profile" regexp="^export LSCOLORS=" line="export LSCOLORS=ExFxCxDxBxegedabagacad"
+
+  - name: Ensure bash_profile config
+    lineinfile: dest="{{ansible_user_dir}}/.bash_profile" regexp="^alias ls=" line="alias ls='ls -alFhG'"
+       
+        
+  - include: mac_main.yml
+    when: ansible_distribution == "MacOSX"
+    become: true
+    become_user: "{{user.user_id}}"
+
+  - include: debian_main.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    become: true
+    become_user: "{{user.user_id}}"
+
+
+    

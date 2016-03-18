@@ -1,0 +1,36 @@
+---
+  user:
+    user_id: rjordan
+    email: rjordan@pobox.com
+    fullname: Richard Kent Jordan
+  atom_packages_packages:
+    - atom-beautify
+    - autocomplete-elixir
+    - autocomplete-ruby
+    - build
+    - build-sbt
+    - language-elixir
+    - language-kotlin
+    - linter
+    - linter-checkstyle
+    - linter-erb
+    - linter-gcc
+    - linter-javac
+    - linter-kotlin
+    - linter-raml
+    - linter-rubocop
+    - linter-scss-lint
+    - linter-tidy
+    - package-sync
+    - pigments
+    - rails-transporter
+    - raml
+    - relative-numbers
+    - ruby-navigator
+    - ruby-test
+    - slatechalk-syntax
+    - tomorrow-evening-syntax
+  fonts:
+    - SourceCodePro-Regular.ttf
+    - SourceCodePro-Semibold.ttf
+    - OldeEnglish.ttf

@@ -1,0 +1,7 @@
+---
+  - name: Ensure fonts directory exists
+    file: path="{{ansible_user_dir}}/.fonts/truetype/" state=directory
+
+  - name: Install Fonts
+    copy: src="files/{{item}}" dest="{{ansible_user_dir}}/.fonts/truetype/{{item}}" force=true
+    with_items: "{{fonts}}"

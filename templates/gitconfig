@@ -1,0 +1,11 @@
+[user]
+        email = {{user.email}}
+        name = {{user.fullname}}
+[push]
+        default = simple
+[merge]
+        ff = false
+[pull]
+        ff = only
+[core]
+        autocrlf = input
